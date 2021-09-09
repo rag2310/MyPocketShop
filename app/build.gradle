@@ -64,4 +64,8 @@ dependencies {
 
     //Hilt y Navigation Compose
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
+
+    //Compose Material design icons
+    implementation("androidx.compose.material:material-icons-core:$compose_version")
+    implementation("androidx.compose.material:material-icons-extended:$compose_version")
 }

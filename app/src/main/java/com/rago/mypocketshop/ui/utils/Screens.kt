@@ -13,6 +13,8 @@ sealed class Screens(
     object Splash : Screens("splash")
     object Menu : Screens("Menu", Icons.Filled.Menu, "Menu")
     object Settings : Screens("settings", Icons.Filled.Settings, "Opciones")
+    object Products : Screens("Products")
+
     companion object {
         val itemsBottomBar = listOf(
             Screens.Menu,
