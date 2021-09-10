@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Store
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -54,32 +55,7 @@ val list = listOf(
 @Composable
 fun ProductsScreen(navController: NavController, viewModel: ProductsViewModel) {
     val listProducts by viewModel.getAllProducts.observeAsState()
-    /*ScaffoldTopBar(title = "Productos", navController = navController) {
-        ProductsContent(listProducts = listProducts)
-    }*/
     Scaffold(
-        topBar = {
-            TopAppBar {
-                Row(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    IconButton(
-                        onClick = { navController.popBackStack() }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = null
-                        )
-                    }
-                    Text(
-                        "Productos",
-                        modifier = Modifier.padding(start = 10.dp)
-                    )
-                }
-            }
-        },
         floatingActionButton = {
             FloatingActionButton(onClick = { println("Add") }) {
                 Icon(Icons.Filled.Add, contentDescription = null)
@@ -92,18 +68,43 @@ fun ProductsScreen(navController: NavController, viewModel: ProductsViewModel) {
                 Text(text = "Hola")
             }
         }) {
-        ProductsContent(listProducts = listProducts)
+        ProductsContent(listProducts = listProducts, onBack = { navController.popBackStack() })
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun ProductsContent(listProducts: List<Products>? = list) {
+private fun ProductsContent(listProducts: List<Products>? = list, onBack: () -> Unit = {}) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
+        Row(
+            Modifier
+                .padding(bottom = 10.dp, top = 5.dp)
+                .background(Color.Transparent),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(50.dp)
+                    .clip(RoundedCornerShape(topEnd = 30.dp, bottomEnd = 30.dp))
+                    .background(MaterialTheme.colors.secondary)
+            ) {
+                IconButton(onClick = onBack) {
+                    Icon(
+                        Icons.Filled.ArrowBack,
+                        contentDescription = null,
+                        tint = MaterialTheme.colors.onSecondary
+                    )
+                }
+            }
+            Text(
+                "Productos", fontFamily = FontFamily(Font(R.font.roboto_black)), fontSize = 20.sp,
+                modifier = Modifier.padding(start = 20.dp)
+            )
+        }
         if (listProducts != null) {
-            LazyColumn {
+            LazyColumn(Modifier.padding(bottom = 60.dp)) {
                 items(listProducts) { product ->
                     ProductsRow(product = product)
                 }
@@ -186,4 +187,19 @@ private fun ProductsRow(product: Products = list[0]) {
             }
         }
     }
+}
+
+private fun randomColors() :Color{
+    val rnds = (0..10).random()
+
+
+    Color.DarkGray
+    Color.Gray
+    Color.LightGray
+    Color.Red
+    Color.Green
+    Color.Blue
+    Color.Yellow
+    Color.Cyan
+    Color.Magenta
 }
