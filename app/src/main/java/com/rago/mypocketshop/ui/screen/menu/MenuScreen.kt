@@ -19,15 +19,15 @@ import androidx.navigation.NavController
 import com.rago.mypocketshop.R
 import com.rago.mypocketshop.ui.screen.menu.components.MenuItem
 import com.rago.mypocketshop.ui.utils.Currency
+import com.rago.mypocketshop.ui.utils.Screens
 
 @Composable
 fun MenuScreen(navController: NavController) {
-    MenuContent()
+    MenuContent(navController = navController)
 }
 
-@Preview(showBackground = true)
 @Composable
-fun MenuContent() {
+fun MenuContent(navController: NavController) {
 
     val earnings = 2000.0
     val debt = 200.0
@@ -100,6 +100,7 @@ fun MenuContent() {
                 subTitle = "Listas de Productos",
                 onClick = {
                     println("Productos")
+                    navController.navigate(Screens.Products.route)
                 },
                 color = Color.Red,
                 icon = Icons.Outlined.Inventory2

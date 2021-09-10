@@ -14,18 +14,14 @@ import com.rago.mypocketshop.BuildConfig
 import com.rago.mypocketshop.R
 import com.rago.mypocketshop.ui.components.MainTitle
 import com.rago.mypocketshop.ui.components.SubTitle
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun SplashScreen(navController: NavController) {
     ScreenContent()
 
-
-    GlobalScope.launch(Dispatchers.Main) {
+    CoroutineScope(Dispatchers.Main).launch{
         delay(1000)
         navController.popBackStack()
         navController.navigate("menu")
