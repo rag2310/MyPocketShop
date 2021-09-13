@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Inventory2
@@ -31,7 +32,7 @@ fun MenuItem(
     title: String = "Productos",
     subTitle: String = "Inventario Actual",
     onClick: () -> Unit = {},
-    color: Color = Color.Blue,
+//    color: Color = Color.Blue,
     icon: ImageVector = Icons.Outlined.Inventory2
 ) {
     Card(
@@ -40,7 +41,7 @@ fun MenuItem(
             .fillMaxHeight()
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(0),
-        backgroundColor = color.copy(alpha = 0.3f),
+        backgroundColor = MaterialTheme.colors.primary,
         elevation = 0.dp
     ) {
         Column(Modifier.fillMaxWidth()) {
@@ -59,7 +60,7 @@ fun MenuItem(
                     Icon(
                         icon,
                         contentDescription = null,
-                        tint = color,
+                        tint = MaterialTheme.colors.secondary,
                         modifier = Modifier.align(Alignment.Center)
                     )
                 }
@@ -70,14 +71,14 @@ fun MenuItem(
                     .padding(start = 16.dp, bottom = 16.dp)
             ) {
                 Column(Modifier.fillMaxWidth()) {
-                    MainTitle(title)
+                    MainTitle(title, color = MaterialTheme.colors.onPrimary)
                     Text(
                         text = subTitle,
                         fontFamily = FontFamily(
                             Font(R.font.roboto_light)
                         ),
                         fontSize = 12.sp,
-                        color = color.copy(alpha = 0.8f)
+                        color = MaterialTheme.colors.secondary
                     )
                 }
             }

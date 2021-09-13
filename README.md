@@ -59,9 +59,9 @@
 - [ ] Settings Screen
 - [ ] Implementar el DataStore
 - [ ] Products Screen
-- [ ] Implementar el Hilt
-- [ ] Implementar el RoomDataBase
+- [x] Implementar el Hilt
+- [x] Implementar el RoomDataBase
 - [ ] Agregar Productos
-- [ ] Listar Productos
+- [x] Listar Productos
 - [ ] Eliminar Productos
 - [ ] Editar Productos

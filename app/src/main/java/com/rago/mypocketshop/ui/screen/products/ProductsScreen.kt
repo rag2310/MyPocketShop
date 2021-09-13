@@ -141,14 +141,14 @@ private fun ProductsRow(product: Products = list[0]) {
                     .size(60.dp)
                     .clip(RoundedCornerShape(10.dp))
                     .weight(1f)
-                    .background(Color.Red.copy(alpha = 0.5f))
+                    .background(MaterialTheme.colors.primary.copy(alpha = 0.5f))
             ) {
                 Icon(
                     Icons.Filled.Store, contentDescription = null, modifier = Modifier
                         .align(
                             Alignment.Center
                         )
-                        .size(50.dp)
+                        .size(50.dp), tint = MaterialTheme.colors.secondary
                 )
             }
             Column(
@@ -182,24 +182,23 @@ private fun ProductsRow(product: Products = list[0]) {
                     text = "C$ ${product.price}",
                     fontFamily = FontFamily(Font(R.font.roboto_medium)),
                     fontSize = 20.sp,
-                    color = Color.Green.copy(alpha = 0.8f)
+                    color = Color.Green.copy(alpha = 0.5f)
                 )
             }
         }
     }
 }
 
-private fun randomColors() :Color{
-    val rnds = (0..10).random()
+private fun randomColors(): Color {
+    val rnds = (0..5).random()
 
-
-    Color.DarkGray
-    Color.Gray
-    Color.LightGray
-    Color.Red
-    Color.Green
-    Color.Blue
-    Color.Yellow
-    Color.Cyan
-    Color.Magenta
+    return when (rnds) {
+        0 -> Color.Red
+        1 -> Color.Green
+        2 -> Color.Blue
+        3 -> Color.Yellow
+        4 -> Color.Cyan
+        5 -> Color.Magenta
+        else -> Color.Blue
+    }
 }

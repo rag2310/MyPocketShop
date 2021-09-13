@@ -90,7 +90,7 @@ fun MenuContent(navController: NavController) {
                 onClick = {
                     println("Ventas")
                 },
-                color = Color.Blue,
+//                color = Color.Blue,
                 icon = Icons.Outlined.Storefront
             )
 
@@ -102,7 +102,7 @@ fun MenuContent(navController: NavController) {
                     println("Productos")
                     navController.navigate(Screens.Products.route)
                 },
-                color = Color.Red,
+//                color = Color.Red,
                 icon = Icons.Outlined.Inventory2
             )
         }
@@ -115,7 +115,7 @@ fun MenuContent(navController: NavController) {
                 onClick = {
                     println("Inventario")
                 },
-                color = Color.Magenta,
+//                color = Color.Red,
                 icon = Icons.Outlined.Inventory
             )
 
@@ -126,8 +126,8 @@ fun MenuContent(navController: NavController) {
                 onClick = {
                     println("Finanzas")
                 },
-                color = Color.Green,
-                Icons.Outlined.AccountBalanceWallet
+//                color = Color.Blue,
+                icon = Icons.Outlined.AccountBalanceWallet
             )
         }
 
