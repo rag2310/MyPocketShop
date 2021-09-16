@@ -12,13 +12,13 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Store
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.rago.mypocketshop.R
 import com.rago.mypocketshop.data.model.Products
-import com.rago.mypocketshop.ui.components.ScaffoldTopBar
+import com.rago.mypocketshop.ui.values.Currency
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -65,7 +65,7 @@ fun ProductsScreen(navController: NavController, viewModel: ProductsViewModel) {
         isFloatingActionButtonDocked = true,
         bottomBar = {
             BottomAppBar(cutoutShape = CircleShape) {
-                Text(text = "Hola")
+                Text(text = "aqui")
             }
         }) {
         ProductsContent(listProducts = listProducts, onBack = { navController.popBackStack() })
@@ -99,7 +99,9 @@ private fun ProductsContent(listProducts: List<Products>? = list, onBack: () -> 
                 }
             }
             Text(
-                "Productos", fontFamily = FontFamily(Font(R.font.roboto_black)), fontSize = 20.sp,
+                stringResource(id = R.string.products_title),
+                fontFamily = FontFamily(Font(R.font.roboto_black)),
+                fontSize = 20.sp,
                 modifier = Modifier.padding(start = 20.dp)
             )
         }
@@ -179,7 +181,7 @@ private fun ProductsRow(product: Products = list[0]) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "C$ ${product.price}",
+                    text = "$Currency ${product.price}",
                     fontFamily = FontFamily(Font(R.font.roboto_medium)),
                     fontSize = 20.sp,
                     color = Color.Green.copy(alpha = 0.5f)

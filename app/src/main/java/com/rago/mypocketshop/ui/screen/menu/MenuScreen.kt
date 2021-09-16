@@ -8,26 +8,28 @@ import androidx.compose.material.icons.outlined.Inventory
 import androidx.compose.material.icons.outlined.Inventory2
 import androidx.compose.material.icons.outlined.Storefront
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.rago.mypocketshop.R
 import com.rago.mypocketshop.ui.screen.menu.components.MenuItem
-import com.rago.mypocketshop.ui.utils.Currency
 import com.rago.mypocketshop.ui.utils.Screens
+import com.rago.mypocketshop.ui.values.Currency
 
 @Composable
-fun MenuScreen(navController: NavController) {
-    MenuContent(navController = navController)
+fun MenuScreen(navController: NavController, viewModel: MenuViewModel) {
+    val username by viewModel.username.observeAsState("")
+    MenuContent(navController = navController, username = username)
 }
 
 @Composable
-fun MenuContent(navController: NavController) {
+fun MenuContent(navController: NavController, username: String) {
 
     val earnings = 2000.0
     val debt = 200.0
@@ -44,12 +46,12 @@ fun MenuContent(navController: NavController) {
         ) {
             Column {
                 Text(
-                    text = "Hola Rodolfo,",
+                    text = "${stringResource(id = R.string.hi)} $username,",
                     fontSize = 24.sp,
                     fontFamily = FontFamily(Font(R.font.roboto_bold))
                 )
                 Text(
-                    text = "¿Qué quieres hacer hoy?",
+                    text = stringResource(id = R.string.message_of_the_day),
                     fontSize = 16.sp,
                     fontFamily = FontFamily(Font(R.font.roboto_medium))
                 )
@@ -68,13 +70,13 @@ fun MenuContent(navController: NavController) {
             CurrencyColumn(
                 modifier = currencyModifier,
                 value = earnings,
-                subTitle = "Ganancias del día"
+                subTitle = stringResource(id = R.string.earnings_of_the_day)
             )
 
             CurrencyColumn(
                 modifier = currencyModifier,
                 value = debt,
-                subTitle = "Deuda del día"
+                subTitle = stringResource(id = R.string.debt_of_the_day)
             )
         }
 

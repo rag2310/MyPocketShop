@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">MyPocketShop</string>
     <string name="nombre_app">Mi Tienda de Bolsillo</string>
+    <string name="loading">Cargando ...</string>
+    <string name="version">Version</string>
+    <string name="products_title">Productos</string>
+    <string name="hi">Hola</string>
+    <string name="message_of_the_day">¿Qué quieres hacer hoy?</string>
+    <string name="earnings_of_the_day">Ganancias del día</string>
+    <string name="debt_of_the_day">Deuda del día</string>
 </resources>

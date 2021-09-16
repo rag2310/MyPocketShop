@@ -1,7 +1,6 @@
 package com.rago.mypocketshop.di
 
 import android.content.Context
-import androidx.room.CoroutinesRoom
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
