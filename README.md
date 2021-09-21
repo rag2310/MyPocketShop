@@ -33,8 +33,8 @@
 ###### Splash Screen pantalla de bienvenida del aplicativo
 
 1. Carga de datos
-   -Username
-   -etc
+   - Username
+   - etc
 
 ![Menu Screen](/screen/menu.png)
 
