@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.map
 
 private const val STORE_NAME = "my_pocket_shop_data_store"
 private val USERNAME = stringPreferencesKey("username")
+private val CURRENCY = stringPreferencesKey("currency")
 private val Context.dataStore by preferencesDataStore(STORE_NAME)
 
 class DataStoreManager(context: Context) {
@@ -23,6 +24,16 @@ class DataStoreManager(context: Context) {
     suspend fun setNameUser(username: String) {
         dataStore.edit { preferences ->
             preferences[USERNAME] = username
+        }
+    }
+
+    fun getCurrency(): Flow<String> = dataStore.data.map { preferences ->
+        preferences[CURRENCY] ?: "$"
+    }
+
+    suspend fun setCurrency(currency: String) {
+        dataStore.edit { preferences ->
+            preferences[CURRENCY] = currency
         }
     }
 }

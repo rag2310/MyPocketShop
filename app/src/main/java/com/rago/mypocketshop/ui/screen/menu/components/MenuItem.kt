@@ -29,8 +29,8 @@ import com.rago.mypocketshop.ui.components.MainTitle
 @Composable
 fun MenuItem(
     modifier: Modifier = Modifier,
-    title: String = "Productos",
-    subTitle: String = "Inventario Actual",
+    title: String = "Product",
+    subTitle: String = "Inventory",
     onClick: () -> Unit = {},
 //    color: Color = Color.Blue,
     icon: ImageVector = Icons.Outlined.Inventory2

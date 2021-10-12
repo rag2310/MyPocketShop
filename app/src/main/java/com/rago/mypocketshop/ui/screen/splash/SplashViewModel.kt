@@ -5,12 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rago.mypocketshop.data.prefsstore.DataStoreManager
+import com.rago.mypocketshop.ui.utils.Currency
 import com.rago.mypocketshop.ui.utils.Username
-import com.rago.mypocketshop.ui.values.LoadingSuccess
-import com.rago.mypocketshop.ui.values.LoadingUsername
+import com.rago.mypocketshop.ui.values.SplashProcessesLabels
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,7 +29,7 @@ class SplashViewModel @Inject constructor() : ViewModel() {
     @Inject
     lateinit var dataStoreManager: DataStoreManager
 
-    var init = false
+    private var init = false
 
     private val _process: MutableLiveData<String> = MutableLiveData("")
     val process: LiveData<String> = _process
@@ -43,11 +42,12 @@ class SplashViewModel @Inject constructor() : ViewModel() {
         if (!init) {
             init = true
             viewModelScope.launch(Dispatchers.Main) {
-                _process.value = LoadingUsername
+                _process.value = SplashProcessesLabels.LoadingUsername
                 getUsername()
-                delay(2000)
-                _process.value = LoadingSuccess
-
+                _process.value = SplashProcessesLabels.SuccessUsername
+                _process.value = SplashProcessesLabels.LoadingParam
+                getParam()
+                _process.value = SplashProcessesLabels.SuccessParam
                 _complete.value = true
             }
         }
@@ -58,6 +58,14 @@ class SplashViewModel @Inject constructor() : ViewModel() {
         viewModelScope.launch {
             dataStoreManager.getNameUser().collect {
                 Username = it
+            }
+        }
+    }
+
+    private fun getParam() {
+        viewModelScope.launch {
+            dataStoreManager.getCurrency().collect {
+                Currency = it
             }
         }
     }

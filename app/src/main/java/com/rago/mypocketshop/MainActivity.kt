@@ -14,7 +14,9 @@ import com.rago.mypocketshop.ui.screen.menu.MenuViewModel
 import com.rago.mypocketshop.ui.screen.products.ProductsScreen
 import com.rago.mypocketshop.ui.screen.products.ProductsViewModel
 import com.rago.mypocketshop.ui.screen.settings.SettingsScreen
+import com.rago.mypocketshop.ui.screen.settings.SettingsViewModel
 import com.rago.mypocketshop.ui.screen.settings.screens.AccountScreen
+import com.rago.mypocketshop.ui.screen.settings.screens.ParamsScreen
 import com.rago.mypocketshop.ui.screen.splash.SplashScreen
 import com.rago.mypocketshop.ui.screen.splash.SplashViewModel
 import com.rago.mypocketshop.ui.utils.Screens
@@ -42,8 +44,9 @@ class MainActivity : ComponentActivity() {
                 }
 
                 composable(route = Screens.Settings.route) {
+                    val viewModel = hiltViewModel<SettingsViewModel>()
                     BottomBarLayout(navController = navController) {
-                        SettingsScreen(navController = navController)
+                        SettingsScreen(navController = navController, viewModel = viewModel)
                     }
                 }
 
@@ -57,6 +60,12 @@ class MainActivity : ComponentActivity() {
                 composable(route = Screens.Account.route) {
                     MainLayout {
                         AccountScreen(navController = navController)
+                    }
+                }
+
+                composable(route = Screens.Params.route) {
+                    MainLayout {
+                        ParamsScreen(navController = navController)
                     }
                 }
             }

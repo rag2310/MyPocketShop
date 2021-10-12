@@ -27,13 +27,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.rago.mypocketshop.R
 import com.rago.mypocketshop.data.model.Products
-import com.rago.mypocketshop.ui.values.Currency
+import com.rago.mypocketshop.ui.utils.Currency
 import java.text.SimpleDateFormat
 import java.util.*
 
 val list = listOf(
     Products(
-        name = "Agua Embotellada",
+        name = "Water",
         price = 25.0,
         creationDate = Calendar.getInstance().time
     ),
@@ -65,7 +65,7 @@ fun ProductsScreen(navController: NavController, viewModel: ProductsViewModel) {
         isFloatingActionButtonDocked = true,
         bottomBar = {
             BottomAppBar(cutoutShape = CircleShape) {
-                Text(text = "aqui")
+                Text(text = "Here")
             }
         }) {
         ProductsContent(listProducts = listProducts, onBack = { navController.popBackStack() })
@@ -188,19 +188,5 @@ private fun ProductsRow(product: Products = list[0]) {
                 )
             }
         }
-    }
-}
-
-private fun randomColors(): Color {
-    val rnds = (0..5).random()
-
-    return when (rnds) {
-        0 -> Color.Red
-        1 -> Color.Green
-        2 -> Color.Blue
-        3 -> Color.Yellow
-        4 -> Color.Cyan
-        5 -> Color.Magenta
-        else -> Color.Blue
     }
 }

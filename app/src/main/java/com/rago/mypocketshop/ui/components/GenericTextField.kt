@@ -26,8 +26,8 @@ fun GenericTextField(
     isError: Boolean,
     errorMsg: String,
     showTooltip: Boolean,
-    closeTooltip: () -> Unit,
-    showError: () -> Unit
+    onCloseTooltip: () -> Unit,
+    onShowError: () -> Unit
 ) {
     Row(Modifier.fillMaxWidth()) {
         OutlinedTextField(value = data, onValueChange = onChangeUsername, placeholder = {
@@ -35,11 +35,11 @@ fun GenericTextField(
         }, trailingIcon = {
             if (isError) {
                 if (showTooltip) {
-                    IconButton(onClick = closeTooltip) {
+                    IconButton(onClick = onCloseTooltip) {
                         Icon(Icons.Filled.Close, contentDescription = null)
                     }
                 } else {
-                    IconButton(onClick = showError) {
+                    IconButton(onClick = onShowError) {
                         Icon(
                             Icons.Filled.Info,
                             tint = Color.Red.copy(alpha = 0.6f),
@@ -50,7 +50,6 @@ fun GenericTextField(
             }
         }, modifier = Modifier.fillMaxWidth())
     }
-    val popupWidth = 100.dp
     val popupHeight = 30.dp
     val cornerSize = 5.dp
 

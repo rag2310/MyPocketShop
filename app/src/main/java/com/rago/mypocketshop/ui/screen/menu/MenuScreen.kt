@@ -19,20 +19,21 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.rago.mypocketshop.R
 import com.rago.mypocketshop.ui.screen.menu.components.MenuItem
+import com.rago.mypocketshop.ui.utils.Currency
 import com.rago.mypocketshop.ui.utils.Screens
-import com.rago.mypocketshop.ui.values.Currency
+import com.rago.mypocketshop.ui.utils.Username
+import com.rago.mypocketshop.ui.values.MenuItemsLabels
 
 @Composable
 fun MenuScreen(navController: NavController, viewModel: MenuViewModel) {
-    val username by viewModel.username.observeAsState("")
-    MenuContent(navController = navController, username = username)
+    val earnings by viewModel.earnings.observeAsState(0.0)
+    val debt by viewModel.debt.observeAsState(0.0)
+    MenuContent(navController = navController, earnings = earnings, debt = debt)
 }
 
 @Composable
-fun MenuContent(navController: NavController, username: String) {
+fun MenuContent(navController: NavController, earnings: Double, debt: Double) {
 
-    val earnings = 2000.0
-    val debt = 200.0
     val padding = 8.dp
 
     Column(
@@ -46,7 +47,7 @@ fun MenuContent(navController: NavController, username: String) {
         ) {
             Column {
                 Text(
-                    text = "${stringResource(id = R.string.hi)} $username,",
+                    text = "${stringResource(id = R.string.hi)} $Username,",
                     fontSize = 24.sp,
                     fontFamily = FontFamily(Font(R.font.roboto_bold))
                 )
@@ -87,24 +88,20 @@ fun MenuContent(navController: NavController, username: String) {
         MenuRow {
             MenuItem(
                 modifier = modifier,
-                title = "Ventas",
-                subTitle = "Detalles de las ventas efectuadas",
+                title = MenuItemsLabels.TitleSales,
+                subTitle = MenuItemsLabels.SubTitleSales,
                 onClick = {
-                    println("Ventas")
                 },
-//                color = Color.Blue,
                 icon = Icons.Outlined.Storefront
             )
 
             MenuItem(
                 modifier = modifier,
-                title = "Productos",
-                subTitle = "Listas de Productos",
+                title = MenuItemsLabels.TitleProduct,
+                subTitle = MenuItemsLabels.SubTitleSales,
                 onClick = {
-                    println("Productos")
                     navController.navigate(Screens.Products.route)
                 },
-//                color = Color.Red,
                 icon = Icons.Outlined.Inventory2
             )
         }
@@ -112,23 +109,19 @@ fun MenuContent(navController: NavController, username: String) {
         MenuRow {
             MenuItem(
                 modifier = modifier,
-                title = "Inventario",
-                subTitle = "Productos en inventario",
+                title = MenuItemsLabels.TitleInventory,
+                subTitle = MenuItemsLabels.SubTitleInventory,
                 onClick = {
-                    println("Inventario")
                 },
-//                color = Color.Red,
                 icon = Icons.Outlined.Inventory
             )
 
             MenuItem(
                 modifier = modifier,
-                title = "Finanzas",
-                subTitle = "Detalles de las ventas efectuadas",
+                title = MenuItemsLabels.TitleFinance,
+                subTitle = MenuItemsLabels.SubTitleFinance,
                 onClick = {
-                    println("Finanzas")
                 },
-//                color = Color.Blue,
                 icon = Icons.Outlined.AccountBalanceWallet
             )
         }

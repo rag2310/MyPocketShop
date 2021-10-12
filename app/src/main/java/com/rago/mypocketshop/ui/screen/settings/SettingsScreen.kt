@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
@@ -34,21 +35,41 @@ import com.rago.mypocketshop.ui.components.SubTitle
 import com.rago.mypocketshop.ui.utils.Screens
 
 @Composable
-fun SettingsScreen(navController: NavController) {
-    SettingsContent(navController = navController)
+fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel) {
+    SettingsContent(
+        navController = navController,
+        onChangeUsername = { newUsername: String ->
+            viewModel.saveUsername(newUsername = newUsername)
+        }
+    ) { currency: String ->
+        viewModel.saveParams(currency = currency)
+    }
 }
 
 @Composable
-fun SettingsContent(navController: NavController) {
+fun SettingsContent(
+    navController: NavController,
+    onChangeUsername: (String) -> Unit,
+    onChangeParams: (String) -> Unit
+) {
 
-    val result =
+    val resultAccount =
         navController.currentBackStackEntry
             ?.savedStateHandle
             ?.getLiveData<String>("username")
             ?.observeAsState()
 
-    result?.value?.let {
-        println(it)
+    resultAccount?.value?.let {
+        onChangeUsername(it)
+    }
+
+    val resultParam =
+        navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<String>("param")
+
+    resultParam?.value?.let {
+        onChangeParams(it)
     }
 
     val context = LocalContext.current
@@ -86,8 +107,8 @@ fun SettingsContent(navController: NavController) {
         SettingRow(Icons.Filled.AccountCircle, "Cuenta") {
             navController.navigate(Screens.Account.route)
         }
-        SettingRow(Icons.Filled.AccountCircle, "Parametros") {
-            println("Parametros")
+        SettingRow(Icons.Filled.Settings, "Parametros") {
+            navController.navigate(Screens.Params.route)
         }
         Text(
             text = "Acerca de ${stringResource(id = R.string.nombre_app)}",

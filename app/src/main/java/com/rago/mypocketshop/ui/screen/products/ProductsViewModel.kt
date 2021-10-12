@@ -9,7 +9,6 @@ import com.rago.mypocketshop.data.model.Products
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,14 +17,9 @@ class ProductsViewModel @Inject constructor(private val repository: ProductsRepo
 
     val getAllProducts: LiveData<List<Products>> = repository.allProducts.asLiveData()
 
-    fun insertDefault() {
+    fun insertProduct(newProducts: Products) {
         viewModelScope.launch(Dispatchers.IO) {
-            val products = Products(
-                name = "Agua Embotellada",
-                price = 25.0,
-                creationDate = Calendar.getInstance().time
-            )
-            repository.insert(products)
+            repository.insert(newProducts)
         }
     }
 }
