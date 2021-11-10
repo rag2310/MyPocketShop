@@ -4,7 +4,7 @@ on:
   push:
     branches: [ dev_rgu ]
   pull_request:
-    branches: [ main ]
+    branches: [ dev_rgu ]
 
 jobs:
   test:
