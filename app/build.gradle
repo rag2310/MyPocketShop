@@ -19,6 +19,12 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation","$projectDir/schemas")
+            }
+        }
     }
 
     buildTypes {
@@ -66,6 +72,9 @@ dependencies {
 
     //Compose Integration with observables
     implementation("androidx.compose.runtime:runtime-livedata:$compose_version")
+
+    // Animations
+    implementation("androidx.compose.animation:animation:$compose_version")
 
     //Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"

@@ -1,0 +1,52 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "6d4e41d53aa7ba6833e2456fb6cf39cd",
+    "entities": [
+      {
+        "tableName": "PRODUCTS",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID_PRODUCT` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `NAME` TEXT NOT NULL, `PRICE` REAL NOT NULL, `CREATION_DATE` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idProduct",
+            "columnName": "ID_PRODUCT",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "NAME",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "PRICE",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "creationDate",
+            "columnName": "CREATION_DATE",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID_PRODUCT"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6d4e41d53aa7ba6833e2456fb6cf39cd')"
+    ]
+  }
+}

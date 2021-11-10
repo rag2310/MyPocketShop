@@ -13,11 +13,12 @@ data class Products(
     val idProduct: Long = 0L,
 
     @ColumnInfo(name = "NAME")
-    var name: String,
+    var name: String = "",
 
     @ColumnInfo(name = "PRICE")
-    var price: Double,
+    var price: Double = 0.0,
 
     @ColumnInfo(name = "CREATION_DATE")
-    var creationDate: Date
+    var creationDate: Date = Calendar.getInstance().time
+
 )
