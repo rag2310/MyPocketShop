@@ -16,6 +16,7 @@ jobs:
     - name: set up JDK 11
       uses: actions/setup-java@v2
       with:
+        distribution: 'adopt'
         java-version: '11'
     - name: Unit tests
       run: bash ./gradlew test --stacktrace
@@ -29,6 +30,7 @@ jobs:
       - name: set up JDK 11
         uses: actions/setup-java@v2
         with:
+          distribution: 'adopt'
           java-version: '11'
       - name: Buil debug APK
         run: bash ./gradlew assembleDebug --stacktrace
