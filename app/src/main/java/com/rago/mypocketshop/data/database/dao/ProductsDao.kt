@@ -17,5 +17,5 @@ interface ProductsDao {
     fun update(products: Products)
 
     @Delete
-    fun delete(products: Products)
+    fun delete(vararg products: Products)
 }

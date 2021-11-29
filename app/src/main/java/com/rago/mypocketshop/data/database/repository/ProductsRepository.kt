@@ -10,6 +10,8 @@ class ProductsRepository @Inject constructor(private val productsDao: ProductsDa
 
     val allProducts: Flow<List<Products>> = productsDao.getAll()
 
+    fun getProducts(): Flow<List<Products>> = productsDao.getAll()
+
     @WorkerThread
     suspend fun insert(products: Products) {
         productsDao.insertAll(products)
@@ -23,5 +25,11 @@ class ProductsRepository @Inject constructor(private val productsDao: ProductsDa
     @WorkerThread
     suspend fun update(products: Products) {
         productsDao.update(products)
+    }
+
+    @WorkerThread
+    suspend fun deleteAll(products: List<Products>) {
+        productsDao.delete(*products.toTypedArray())
+
     }
 }
